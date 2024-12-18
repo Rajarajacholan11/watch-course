@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Watch-Course</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css">
+    <link rel="stylesheet" href="array.css">
+</head>
+<body>
+
+
+
+
+
+    <div class="watchcourse-container">
+        <header>
+            <h1>GowthamRaj Network</h1>
+            <div class="left"><p class="learner">My Learning</p>
+                <p class="purple">Account</p>
+                <p class="icon"><i class="fa-solid fa-circle-user"></i></p></div>
+            
+        </header>
+        <div class="miniheader">
+          <div class="navbar">
+            <div class="logo">GowthamRaj Network</div>
+            <div class="burger-icon" onclick="toggleMenu()">☰</div>
+          </div>
+
+          <div class="overlay-menu" id="overlayMenu">
+            <div class="close-btn" onclick="toggleMenu()">×</div>
+            <h3>GowthamRaj Network</h3>
+            
+                 <ul>
+                  <li><a class="icon"><i class="fa-solid fa-circle-user"></i></a></li>
+                  <li><a>Account</a></li>
+                  <li><a class="learner">My Learning</a></li>
+
+                   
+                </ul>
+            
+        </div>
+        </div>
+       
+        <!-- SUBWATCH-CONTAINER -->
+         <div class="subwatch-container">
+            <div class="sc-part1 mamba1" id="sc-part1">
+                <div class="sc-p1-card1 cd" >
+                    <h3>Profeshional HTML MasterClass</h3>
+                    <div class="progress">
+                        <label for="prog-bar" id="labl">Course Progress</label>
+                        <progress id="prog-bar" value="0" max="100" ></progress>
+
+                    </div>
+                </div>
+
+                <div class="sc-p1-card2 cd" id="spc2">
+                    <h3 id="section-1" class="heading">Section 1:Getting Started</h3>
+                    <ul>
+                        
+                        <li>what is html?</li>
+                        <li>tags in html</li>
+                        
+                    </ul>
+                </div>
+
+                <div class="sc-p1-card3 cd">
+                    <h3 id="section-2" class="heading">Section 2:Links</h3>
+                    <ul>
+                        <li>Absolute URL</li>
+                        <li>Relative URL</li>
+                    </ul>
+                </div>
+
+                <div class="sc-p1-card4 cd">
+                    <h3 id="section-3" class="heading">Section 3:Style</h3>
+                    <ul>
+                        <li>Style Attribute</li>
+                        <li>Single and Double Quote</li>
+                    </ul>
+                </div>
+
+                <div class="sc-p1-card5 cd">
+                    <h3 id="section-4" class="heading">Section 4:Table</h3>
+                    <ul>
+                        <li>Th,Tr,Td</li>
+                        <li>Forms</li>
+                        
+                    </ul>
+                </div>
+
+                <div class="sc-p1-card6 cd">
+                    <h3 id="section-5" class="heading">Section 5:List</h3>
+                    <ul>
+                        <li>List</li>
+                        <li>Type of List</li>
+                    </ul>
+                </div>
+
+                <div class="sc-p1-card7 cd">
+                    <h3     id="section-6" class="heading">Section 6:End</h3>
+                    <ul>
+                        <li>Conclusion</li>
+
+                    </ul>
+                </div>
+            </div>
+            <div class="sc-part2 mamba2" id="sc-part2">
+                <div class="Menu" onclick="togglepart1()">☰<p>Menu</p></div>
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/3jkub2c0kLA?si=upLj0roM2eFpWSlX" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen ></iframe> -->
+                <div id="player"></div>
+                <div class="txt" id="txt">
+                    <h3>About HTML</h3>
+                    <p>HTML (HyperText Markup Language) is the backbone of web development, serving as the standard language used to structure and display content on the web. It provides the framework for web pages, allowing developers to define elements such as headings, paragraphs, images, links, tables, and multimedia. HTML uses tags and attributes to organize and format content, ensuring it can be easily interpreted by browsers. As a fundamental skill for any web developer, HTML works seamlessly with CSS for styling and JavaScript for interactivity, making it an essential starting point for creating engaging, dynamic, and user-friendly websites.</p>
+                </div>
+            </div>
+         </div>
+    </div>
+    <script>
+        // 1. Load the YouTube IFrame API asynchronously
+        var tag = document.createElement('script');
+        tag.src = "https://www.youtube.com/iframe_api";
+        var firstScriptTag = document.getElementsByTagName('script')[0];
+        firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    
+        var player;
+        var progressBar = document.getElementById('prog-bar');
+        var headings=document.querySelectorAll('.heading');
+        var sections=[
+            {id:"section-1",start:0,end:2224},
+            {id:"section-2",start:2313,end:2549},
+            {id:"section-3",start:2616,end:4650},
+            {id:"section-4",start:4758,end:5135},
+            {id:"section-5",start:5358,end:6158},
+            {id:"section-6",start:7069,end:7070}
+        ];
+    
+        // 2. Initialize the YouTube player
+        function onYouTubeIframeAPIReady() {
+          player = new YT.Player('player', {
+            
+            videoId: '3jkub2c0kLA', // Replace with your YouTube video ID
+            events: {
+              'onReady': onPlayerReady,
+              'onStateChange': onPlayerStateChange
+
+            }
+          });
+        }
+    
+        // 3. Start tracking the progress when the video plays
+        function onPlayerReady(event) {
+          // Optionally, start the video automatically
+           event.target.playVideo();
+        }
+    
+        function onPlayerStateChange(event) {
+          if (event.data === YT.PlayerState.PLAYING) {
+            trackProgress();
+          }
+        }
+    
+        // 4. Update the progress bar
+        function trackProgress()
+        {
+            if (player && player.getDuration) {
+            var currentTime = player.getCurrentTime();
+            var duration = player.getDuration();
+            var progressPercent = (currentTime / duration) * 100;
+    
+            // Update the progress bar value
+            progressBar.value = progressPercent;
+            sections.forEach(section=>{
+                var heading=document.getElementById(section.id);
+                if(currentTime>=section.start&&currentTime<=section.end)
+            {
+                heading.classList.add('active');
+
+            }
+            else{
+                heading.classlist.remove('active');
+            }
+            });
+        
+        
+    
+            // Continue updating while the video is playing
+            if (player.getPlayerState() === YT.PlayerState.PLAYING) {
+              requestAnimationFrame(trackProgress);
+            }
+          }
+        }
+
+        
+      </script>
+      <script>
+      function toggleMenu() 
+      { 
+        console.log("cliked");
+      
+        const overlayMenu = document.getElementById('overlayMenu');
+        overlayMenu.classList.toggle('actives');
+      }
+      
+    </script>
+</body>
+</html>
